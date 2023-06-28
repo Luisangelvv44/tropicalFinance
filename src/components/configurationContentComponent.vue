@@ -17,11 +17,11 @@
                     </ion-item> -->
                     <ion-item>
                         <ion-input label="Sueldo mensual" labelPlacement="floating" 
-                            placeholder="Introduce el sueldo"></ion-input>
+                            placeholder="Introduce el sueldo" type="number"></ion-input>
                     </ion-item>
                     <ion-item>
                         <ion-input label="Cuotas mensuales" labelPlacement="floating" 
-                            placeholder="Introduce las cuotas"></ion-input>
+                            placeholder="Introduce las cuotas" type="number"></ion-input>
                     </ion-item>
                 </ion-list>
                 <ion-button class="ion-button" @click="onclickGuardar">Guardar</ion-button>
