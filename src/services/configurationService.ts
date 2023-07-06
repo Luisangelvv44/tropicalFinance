@@ -16,4 +16,5 @@ export interface ConfigurationModel {
     name: string,
     salary: number,
     cunts: number,
+    savings: number,
 }

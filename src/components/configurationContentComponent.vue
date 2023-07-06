@@ -11,10 +11,6 @@
                         <ion-input label="Nombre" labelPlacement="floating" 
                             placeholder="Introduce el nombre" id="nameConf" v-model="name"></ion-input>
                     </ion-item>
-                    <!-- <ion-item>
-                        <ion-input label="Nombre" labelPlacement="floating" 
-                            placeholder="Introduce el nombre"></ion-input>
-                    </ion-item> -->
                     <ion-item>
                         <ion-input label="Sueldo mensual" labelPlacement="floating" 
                             placeholder="Introduce el sueldo" type="number" id="sueldoConf" v-model="salary"></ion-input>
@@ -22,6 +18,10 @@
                     <ion-item>
                         <ion-input label="Cuotas mensuales" labelPlacement="floating" 
                             placeholder="Introduce las cuotas" type="number" id="cuotaConf" v-model="cunts"></ion-input>
+                    </ion-item>
+                    <ion-item>
+                        <ion-input label="Ahorros" labelPlacement="floating" 
+                            placeholder="Introduce el ahorro" type="number" id="ahorroConf" v-model="savings"></ion-input>
                     </ion-item>
                 </ion-list>
                 <ion-button class="ion-button" @click="onclickGuardar">Guardar</ion-button>
@@ -31,23 +31,27 @@
 </template>
 
 <script lang="ts">
-    import { IonInput, IonItem, IonList, IonButton } from '@ionic/vue';
+    import { IonInput, IonItem, IonList, IonButton, IonCardTitle, IonCardSubtitle, 
+        IonCardHeader, IonCard, IonCardContent } from '@ionic/vue';
     import { defineComponent } from 'vue';
     import { saveAction, getAction, ConfigurationModel } from '@/services/configurationService'
 
     export default defineComponent({
-        components: { IonInput, IonItem, IonList },
+        components: { IonInput, IonItem, IonList, IonButton, IonCardTitle, IonCardSubtitle, 
+            IonCardHeader, IonCard, IonCardContent },
         data() {
             return {
                 idPerson: '',
                 name: '',
                 salary: 0 as number,
                 cunts: 0 as number,
+                savings: 0 as number,
             }
         },
         methods: {
             onclickGuardar(){
-                let conf: ConfigurationModel = { id: this.idPerson, name: this.name, salary: this.salary, cunts: this.cunts }
+                let conf: ConfigurationModel = { id: this.idPerson, name: this.name, salary: this.salary, cunts: this.cunts, 
+                    savings: this.savings }
                 saveAction(conf).then((res: any) => {
                     this.getData()
                 })
@@ -59,6 +63,7 @@
                     this.name = res.data[0]?.name || ''
                     this.salary = res.data[0]?.salary || ''
                     this.cunts = res.data[0]?.cunts || ''
+                    this.savings = res.data[0]?.savings || ''
                 })
             }
         },
@@ -69,18 +74,7 @@
 </script>
 
 <style scoped>
-    #container {
-        background-color: rgb(243, 243, 243);
-        height: 100%;
-        padding: 4rem .75rem;
-        text-align: center;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        overflow-y: auto;
-    }
+    @import "../styles/generic.css";
 
     .ion-button{
         --background: green;
